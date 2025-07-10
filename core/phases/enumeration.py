@@ -1,8 +1,4 @@
-from nmap import PortScanner
+from utils.enum_utils import nmap_scanning    
 
-def enumeration_nmap(target):
-    nmap = PortScanner()
-    nmap.command_line()
-
-def enumeration():
-    print("3")
+def enumeration(target):
+    nmap_scanning(target)
