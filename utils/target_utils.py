@@ -12,7 +12,7 @@ def get_target():
         except ValueError or KeyboardInterrupt:
             error("Invalid input, trying again...")       
             continue
-
+            
 def ping_host(target):
     param = "-n" if os.name == "nt" else "c"
     command = [

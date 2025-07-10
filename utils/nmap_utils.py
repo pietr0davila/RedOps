@@ -35,14 +35,30 @@ def is_nmap_installed():
         # EXECUTA O NMAP        
         return False
 
-def nmap_scanning(target):
+def nmap_scanning(target, scan_type):
     is_nmap_installed()
     try:
+        scanner = nmap.PortScanner()
         logger = setup_logger()
-        logger.info("Nmap scan started successfully.")
-        advanced_scanner = nmap.PortScanner()
-        advanced_scanner.scan(target, arguments="-A -Pn -T4 -p- -vvv")
+        if scan_type.startswith("-"):
+            silent_args = "-sS -Pn --max-retries 1 --min-rate 10 -f -D RND:10"
+            # Modo de evasão (silent)
+            # Não completa o 3-way handshake
+            # Não envia o ping para o host (Assume up)
+            # Velocidade mais lenta
+            # Tenta cada porta uma vez ou sai
+            # Baixa frequência de pacotes
+            # Fragmenta pacotes para evitar a inspeção do firewall
+            # Spoof de IP, envia 10 IPs falsos como "distração"
+            if scan_type == 1:
+                try:
+                    scanner.scan(target, arguments=f"-T2 --top-ports 10000 {silent_args}")
+                    logger.info("Nmap silent basic scan started successfully.")
+                except Exception as e:
+                    error_color("Error with basic silent scan")
+                    error(f"Error with scan: {e}")
         # Scan avançado, ignora ping, velocidade T4 e escaneia as 65k portas
+        #        scanner.scan(target, arguments="-A -Pn -T4 -p- -vvv")
         logger.info("Nmap scan executed successfully.")
     except PermissionError:
         error_color("You don't have sufficient permissions to run this script.")
