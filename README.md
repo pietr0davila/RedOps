@@ -1,3 +1,5 @@
+# Development notes
+This is a educational repository, so exploitation and post-exploitation phases wi'll take a while to be released 
 # RedOps
 
 ## Requirements
