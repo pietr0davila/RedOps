@@ -9,7 +9,6 @@ def get_target():
         print("[+] Enter the target (IP, hostname or network):")
         target = input("> ").strip()
         
-        success_msg = "Target successfully validated."
         is_ip = is_ip_or_network(target)
         is_hostname = is_host(target)
         is_reachable = ping_host(target)

@@ -1,7 +1,7 @@
 from core.phases import *
 from core.target import get_target
 from libraries import (
-    sys, error_color, ERROR_PROCESSING_EXECUTION,
+    error_color, ERROR_PROCESSING_EXECUTION,
     INVALID_INPUT, fatal, success_color
 )
 
@@ -16,7 +16,7 @@ def get_execution(choosed):
 
     if 1 <= choosed <= 3:
         for i in range(1, choosed + 1):
-            function = options.get(i)
+            function = options.get(i, None)
             if function:
                 success_color(f"Starting phase {i}")
                 function(target)

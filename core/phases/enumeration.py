@@ -1,6 +1,6 @@
-from modules.nmap_module import show_nmap_scan_in_shell
+from modules.nmap_module import NmapModule
 
 def enumeration(target):
     from core.ui import scan_user_interface
     mode = scan_user_interface()
-    show_nmap_scan_in_shell(target, mode) 
+    NmapModule(target, mode).show_nmap_scan_in_shell() 

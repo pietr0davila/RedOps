@@ -1,9 +1,10 @@
 from libraries import (
     shutil, os, subprocess, info, warning, error, info_color, warning_color, error_color, success_color
     )
-  
+from utils.system_utils import check_if_is_unix
 def is_tool_installed(tool):
-    if os.name != "nt":
+    if check_if_is_unix():
+
         if shutil.which(tool) is None:
             info_color(f"[*] {tool} not found in the system. Trying to install...")
             warning(f"{tool} not found. The program will attempt to install it.")
