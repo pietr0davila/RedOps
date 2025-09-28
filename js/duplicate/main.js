@@ -1,18 +1,17 @@
-// Classe que detecta duplicados
+// Função que recebe uma string como parâmetro
+// Contar quantas vezes um caractere se repetiu
 class Duplicate {
     constructor(value) {
-        this.value = value || "";
+        this.value = value || 0;
         this.splitValue = [];
         this.repeateds = [];
     }
-
     readStr() {
         for (let i = 0; i < this.value.length; i++) {
             this.splitValue[i] = this.value[i].toLowerCase();
         }
-        return this.checkStr(); // <-- precisa retornar o resultado
+        this.checkStr();
     }
-
     checkStr() {
         let isRepeated = false;
         let strArr = this.splitValue;
@@ -25,26 +24,31 @@ class Duplicate {
                 }
             }
         }
-        return this.printResult(isRepeated); // <-- retorna o número de correspondências
+        this.printResult(isRepeated);
     }
-
     printResult(status) {
         const correspondences = this.repeateds.length;
         if (status) {
-            console.log(`Os valores ${this.repeateds} se repetem`);
+            console.log(`Os valores '${this.repeateds}' se repetem`);
             console.log("Correspondências repetidas => " + correspondences)
         } else {
             console.log("os números não se repetem")
         }
-        return correspondences;
+        return correspondences
     }
 }
 
-// Função wrapper
 function duplicateCount(test) {
-    if (test === "") {
+    // let splitValue = [];
+    // for (let i = 0; i < test.length; i++) {
+    //     for (const letter of test) {
+    //         splitValue[i] = test.toLowerCase();
+            
+    //     }
+    //     }      
+    if (test == "") {
         return 0;
     }
-    return new Duplicate(test).readStr();
+    new Duplicate(test).readStr()
 }
-
+duplicateCount("AbDEA")
